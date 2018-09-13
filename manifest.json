@@ -4,6 +4,8 @@
   "name": "DuckDuckGo's Dark Theme at night",
   "version": "1.0",
   
+  "homepage_url": "https://github.com/josh0196/DDGAutoDarkTheme",
+  
   "author": "Josh Bruegger",
   
   "description": "Switches to DuckDuckGo's dark theme at from a during a specified time window and switches back to desired light theme otherwise.",
