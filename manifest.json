@@ -1,0 +1,31 @@
+{
+
+  "manifest_version": 2,
+  "name": "DuckDuckGo's Dark Theme at night",
+  "version": "1.1",
+  
+  "author": "Josh Bruegger",
+  
+  "description": "Switches to DuckDuckGo's dark theme at from a during a specified time window and switches back to desired light theme otherwise.",
+  
+  "icons": {
+    "24": "icons/ddgtt_icon.svg",
+	"48": "icons/ddgtt_icon.svg",
+	"96": "icons/ddgtt_icon.svg"
+  },
+  
+  "permissions": [
+    "activeTab",
+	"storage"
+  ],
+  
+    "options_ui": {
+    "page": "options.html"
+  },
+
+  "content_scripts" : [{
+        "matches" : ["*://duckduckgo.com/*"],
+        "js" : ["ddgtt.js"]
+    }]
+
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+
+    <form>
+		<fieldset>
+			<legend>Select an hour range</legend>
+			<p><label>Start Hour<input type="time" name="StartH" id="startH" ></label><span> From this hour on, DuckDuckGo's theme will be dark (DEFAULT: 20:00)</span></p>
+			<p><label>End Hour <input type="time" name="EndH" id="endH" ></label><span> From this hour on, DuckDuckGo's theme will be light (DEFAULT: 07:00)</span></p>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Select a light theme</legend>
+
+			<div>
+				<input type="radio" id="theme1" name="theme" value="1" checked />
+				<label for="theme1">DuckDuckGo's default (blue titles)</label>
+			</div>
+
+			<div>
+				<input type="radio" id="theme2" name="theme" value="2" />
+				<label for="theme2">DuckDuckGo's default with black titles</label>
+			</div>
+
+			<div>
+				<input type="radio" id="theme3" name="theme" value="3" />
+				<label for="theme3">Google style blue titles</label>
+			</div>
+		</fieldset>
+		
+		<button type="submit">Save</button>
+    </form>
+	
+	<pre id="log">
+	</pre>
+
+    <script src="options.js"></script>
+
+  </body>
+
+</html>
