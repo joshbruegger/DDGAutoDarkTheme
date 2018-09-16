@@ -1,37 +1,55 @@
+//xpath references
+var darkTheme = getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[4]"); //dark theme button
+var lightTheme = [getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[1]"),
+				  getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[2]"),
+				  getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[3]")]; //light themes buttons
+				  
+				  
+//setting variables
+var s_startH = 20; //hour from which dark theme is turned on
+var s_endH = 7; //hour from which dark theme is turned on
+var s_lightThemeIdx = 0; //selected light theme. 0=standard  1=dark standard  2=Google style
+var s_cooldownLenght = 1; //cooldown length in hours
+
+//update settings then update theme
+browser.storage.local.get()
+  .then(UpdateSettings, onError);
+
+//TODO: toast/snackbar to disable extension for x amount of time
+
+
+//--FUNCTIONS--
+
+/// gets element from xpath
 function getElementByXpath(path) {
   return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
 
-//xpath references
-var darkTheme = getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[4]");
-var lightTheme = [getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[1]"),
-				  getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[2]"),
-				  getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[3]")];
-				  
-//setting variables
-var s_startH = 20;
-var s_endH = 7;
-var s_lightThemeIdx = 0;
+/// called if any errors occur
+function onError(error) {
+  console.log(error)
+}
 
-function updateSettings(item) {
+/// gets settings stored locally, if existent, then runs UpdateTheme()
+function UpdateSettings(item) {
 	
-	if (item.startH) {
-		var startH = item.startH.split(':');
-		var startM = startH[1]!=0? startH[1]/60 : 0;
-		s_startH = Number(startH[0]) + Number(startM);
-	}
+	if (item.startH) //!=null
+		s_startH = item.startH;
 
-	if (item.endH){
-		var endH = item.endH.split(':');
-		var endM = endH[1]!=0? endH[1]/60 : 0;
-		s_endH = Number(endH[0]) + Number(endM);
-	}
+	if (item.endH) //!=null
+		s_endH = item.endH;
 	
-	if (item.selectedTheme)
+	if (item.selectedTheme) //!=null
 		s_lightThemeIdx = item.selectedTheme-1;
 	
-	//alert("startH: " + s_startH + " endH: " + s_endH + " theme= " + s_lightThemeIdx);
-	UpdateTheme();
+	if (item.cooldownLenght) //!=null
+		s_cooldownLenght = item.cooldownLenght;
+		
+	if (!item.lastCooldown) // =null
+		browser.storage.local.set({lastCooldown: 0});	
+	
+	if (Date.now() - item.lastCooldown >= s_cooldownLenght*3600000)
+		UpdateTheme();
 }
 
 function UpdateTheme(){
@@ -49,13 +67,3 @@ function UpdateTheme(){
 		}
 	}
 }
-
-function onError(error) {
-  console.log(error)
-}
-
-//update settings...
-browser.storage.local.get()
-  .then(updateSettings, onError);
-
-//TODO: toast/snackbar to disable extension for x amount of time

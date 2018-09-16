@@ -27,7 +27,7 @@
 
   "content_scripts" : [{
         "matches" : ["*://duckduckgo.com/*"],
-        "js" : ["ddgtt.js"]
+        "js" : ["jquery.js", "ddgtt.js"]
     }]
 
 }
