@@ -17,7 +17,7 @@
 
   "permissions": [
     "activeTab",
-	"storage"
+	  "storage"
   ],
 
     "options_ui": {
