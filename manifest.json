@@ -21,12 +21,12 @@
   ],
 
     "options_ui": {
-    "page": "options.html"
+    "page": "html/options.html"
   },
 
   "content_scripts" : [{
         "matches" : ["*://duckduckgo.com/*"],
-        "js" : ["ddgtt.js"]
+        "js" : ["js/ddgtt.js"]
     }]
 
 }
