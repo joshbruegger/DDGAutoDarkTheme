@@ -1,8 +1,8 @@
 //xpath references
-var darkTheme = getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[4]"); //dark theme button
-var lightTheme = [getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[1]"),
-				  				getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[2]"),
-				  				getElementByXpath("/html/body/div[2]/div[6]/ul/ul[1]/li[2]/ul/li[3]")]; //light themes buttons
+var darkTheme = getElementByXpath("/html/body/div[2]/div[7]/ul/ul[1]/li[2]/ul/li[4]"); //dark theme button
+var lightTheme = [getElementByXpath("/html/body/div[2]/div[7]/ul/ul[1]/li[2]/ul/li[1]"),
+				  getElementByXpath("/html/body/div[2]/div[7]/ul/ul[1]/li[2]/ul/li[2]"),
+				  getElementByXpath("/html/body/div[2]/div[7]/ul/ul[1]/li[2]/ul/li[3]")]; //light themes buttons
 
 
 //setting variables
